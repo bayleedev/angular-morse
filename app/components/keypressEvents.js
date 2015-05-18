@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('myApp')
 
 .directive('keypressEvents', function ($document, $rootScope) {
