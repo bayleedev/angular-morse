@@ -1,0 +1,12 @@
+<div>
+  <span class="score">{{points}}</span>
+  <br />
+  <span class="character">{{character.letter}}</span>
+  <span class="code">{{character.code}}</span>
+  <br />
+  <span class="input">{{input}}</span>
+</div>
+<div keypress-events>
+  <button value="." ng-click="trigger('.')" />
+  <button value="-" ng-click="trigger('-')" />
+</div>
