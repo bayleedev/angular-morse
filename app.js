@@ -5,6 +5,8 @@ angular.module('myApp', [
   'ngRoute',
   'myApp.play',
   'myApp.preferences',
+  'myApp.preferences',
+  'mgcrea.ngStrap.navbar',
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/play'});

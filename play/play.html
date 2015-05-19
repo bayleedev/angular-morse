@@ -1,12 +1,17 @@
-<div>
-  <span class="score">{{points}}</span>
-  <br />
-  <span class="character">{{character.letter}}</span>
-  <span class="code">{{character.code}}</span>
-  <br />
-  <span class="input">{{input}}</span>
+<div class="page-header">
+  <h3>
+    <span class="title">{{title}}</span>
+    <span class="points">{{points}} Points</span>
+  </h3>
 </div>
-<div keypress-events>
-  <button value="." ng-click="trigger('.')" />
-  <button value="-" ng-click="trigger('-')" />
+<div class="col-md-6">
+  <div class="flashcard {{state}}">
+    <div class="front character">{{character.letter}}</div>
+    <div class="back answer code">{{character.code}}</div>
+    <div class="back input code">{{input}}</div>
+  </div>
+</div>
+<div class="col-md-6" keypress-events>
+  <button class="btn btn-default" ng-click="trigger('.')" />&#46;</button>
+  <button class="btn btn-default" ng-click="trigger('-')" />&#45;</button>
 </div>
