@@ -5,14 +5,17 @@ angular.module('myApp.play', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/play', {
     templateUrl: 'play/play.html',
-    controller: 'PlayCtrl'
+    controller: 'PlayCtrl',
   });
 }])
 
-.controller('PlayCtrl', ['$rootScope', 'morseMap', '$scope', function($rootScope, $map, $scope) {
+.controller('PlayCtrl', ['$rootScope', 'morseMap', '$scope', '$timeout', function($rootScope, $map, $scope, $timeout) {
   $scope.input = '';
   $scope.character = { letter: '', code: '' };
   $scope.points = 0;
+  $scope.locked = true;
+  $scope.title = 'Play';
+  $scope.state = 'loading';
 
   $scope.keys = {
     left: 37,
@@ -44,7 +47,10 @@ angular.module('myApp.play', ['ngRoute'])
 
   $scope.newGame = function() {
     var char = $scope.randomCharacter();
+    $scope.locked = false;
     $scope.input = '';
+    $scope.setTitle();
+    $scope.state = 'play';
     $scope.character = {
       letter: char[0],
       code: char[1]
@@ -58,15 +64,31 @@ angular.module('myApp.play', ['ngRoute'])
   };
 
   $scope.win = function() {
-    console.log('Win!', $scope.character, $scope.input);
+    if ($scope.locked) return;
     $scope.points += 10;
-    $scope.newGame();
+    $scope.locked = true;
+    $scope.state = 'won';
+    $scope.setTitle();
+    $timeout($scope.newGame, 2000);
+  };
+
+  $scope.setTitle = function() {
+    if ($scope.state == 'won') {
+      $scope.title = 'Playing - You got it!';
+    } else if ($scope.state == 'loss') {
+      $scope.title = 'Playing - You suck bro!';
+    } else {
+      $scope.title = 'Playing';
+    }
   };
 
   $scope.lose = function() {
-    console.log('Lose!', $scope.character, $scope.input);
+    if ($scope.locked) return;
     $scope.points -= 10;
-    $scope.newGame();
+    $scope.locked = true;
+    $scope.state = 'loss';
+    $scope.setTitle();
+    $timeout($scope.newGame, 2000);
   };
 
   // Listen for button pushes

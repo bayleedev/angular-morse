@@ -1,5 +1,9 @@
 /* app css stylesheet */
 
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
@@ -27,4 +31,55 @@
 .menu > li:nth-child(1):before {
   content: "";
   padding: 0;
+}
+
+.flashcard {
+  display: inline-block; vertical-align: middle;
+  background: radial-gradient(ellipse at center, #fff 0%, #ddd 100%);
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  font-size: 5em;
+  height: 200px;
+  margin-right: 10px;
+  position: relative;
+  text-align: center;
+  transform: rotateY(0deg);
+  transition: all 2s;
+  width: 400px;
+}
+.flashcard.won {
+  color: #00e500;
+}
+.flashcard.loss {
+  color: #E50000;
+}
+.flashcard .front, .flashcard .back {
+  height: 50%;
+  width: 100%;
+}
+.flashcard .answer, .flashcard .input {
+  width: 50%;
+}
+.flashcard .input {
+  float: right;
+}
+.flashcard .answer {
+  float: left;
+}
+
+.page-header .points {
+  float: right;
+}
+
+div button.btn {
+  font-size: 30px;
+  padding: 6px 20px;
+}
+
+.col-md-6 {
+  text-align: center;
+}
+
+[keypress-events] {
+  margin-top: 30px;
 }
