@@ -6,36 +6,41 @@ describe('my app', function() {
 
   browser.get('index.html');
 
-  it('should automatically redirect to /view1 when location hash/fragment is empty', function() {
-    expect(browser.getLocationAbsUrl()).toMatch("/view1");
+  it('should automatically redirect to /play when location hash/fragment is empty', function() {
+    expect(browser.getLocationAbsUrl()).toMatch("/play");
   });
 
 
-  describe('view1', function() {
+  describe('play', function() {
 
     beforeEach(function() {
-      browser.get('index.html#/view1');
+      browser.get('index.html#/play');
     });
 
 
     it('should render view1 when user navigates to /view1', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 1/);
+      expect(element.all(by.css('[ng-view] h3')).first().getText()).
+        toMatch(/playing/i);
     });
 
   });
 
 
-  describe('view2', function() {
+  describe('preferences', function() {
 
     beforeEach(function() {
-      browser.get('index.html#/view2');
+      browser.get('index.html#/preferences');
     });
 
 
-    it('should render view2 when user navigates to /view2', function() {
-      expect(element.all(by.css('[ng-view] p')).first().getText()).
-        toMatch(/partial for view 2/);
+    it('should have the difficulty sections', function() {
+      expect(element.all(by.css('[ng-view] h3')).first().getText()).
+        toMatch(/difficulty/i);
+    });
+
+    it('should have the characters sections', function() {
+      expect(element.all(by.css('[ng-view] h3')).last().getText()).
+        toMatch(/characters/i);
     });
 
   });

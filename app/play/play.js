@@ -1,15 +1,15 @@
 'use strict';
 
-angular.module('myApp.play', ['ngRoute'])
+angular.module('myApp.play', ['ngRoute']).
 
-.config(['$routeProvider', function($routeProvider) {
+config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/play', {
     templateUrl: 'play/play.html',
     controller: 'PlayCtrl',
   });
-}])
+}]).
 
-.controller('PlayCtrl', [
+controller('PlayCtrl', [
     '$rootScope', 'morseMap', '$scope', '$timeout', 'difficulty',
     function($rootScope, $map, $scope, $timeout, $difficulty) {
       $scope.input = '';
@@ -26,7 +26,6 @@ angular.module('myApp.play', ['ngRoute'])
         dot: 190
       };
 
-      // Listen for keystrokes
       $rootScope.$on('keypress', function (evt, e) {
         $scope.safeApply(function() {
           var char = e.which;
@@ -47,12 +46,14 @@ angular.module('myApp.play', ['ngRoute'])
         }
       });
 
-      $scope.hideHint = function() {
-        if ($scope.state === 'loss') return false;
-        if ($scope.difficulty === 'easy') return false;
-        if ($scope.difficulty === 'hard') return true;
-        return Math.round(Math.random() * 1000) % 2 === 0;
-      };
+      $scope.$watch('state', function() {
+        $scope.hideHint = (function() {
+          if ($scope.state === 'loss') return false;
+          if ($scope.difficulty === 'easy') return false;
+          if ($scope.difficulty === 'hard') return true;
+          return Math.round(Math.random() * 1000) % 2 === 0;
+        })();
+      });
 
       $scope.newGame = function() {
         var item = $scope.randomCharacter();
@@ -70,7 +71,6 @@ angular.module('myApp.play', ['ngRoute'])
       $scope.randomCharacter = function() {
         var items = $map.enabledItems();
         var key = Math.floor(Math.random() * items.length);
-        console.log('char seed', key);
         return items[key];
       };
 

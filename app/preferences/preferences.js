@@ -10,7 +10,6 @@ angular.module('myApp.preferences', ['ngRoute'])
 }])
 
 .controller('PreferencesCtrl', ['$scope', 'morseMap', 'difficulty', function($scope, $map, $difficulty) {
-
   $scope.preferences = $map.items();
   $scope.difficulty = $difficulty.value();
   $scope.$watch('difficulty', function(value) {
@@ -20,5 +19,4 @@ angular.module('myApp.preferences', ['ngRoute'])
   $scope.$watch('preferences', function() {
     $map.save();
   }, true);
-
 }]);
