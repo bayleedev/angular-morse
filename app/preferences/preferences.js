@@ -9,6 +9,12 @@ angular.module('myApp.preferences', ['ngRoute'])
   });
 }])
 
-.controller('PreferencesCtrl', [function() {
+.controller('PreferencesCtrl', ['$scope', 'morseMap', 'difficulty', function($scope, $map, $difficulty) {
+
+  $scope.preferences = $map.items();
+  $scope.difficulty = $difficulty.value();
+  $scope.$watch('difficulty', function(value) {
+    $difficulty.value(value);
+  });
 
 }]);

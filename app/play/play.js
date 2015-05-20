@@ -46,21 +46,22 @@ angular.module('myApp.play', ['ngRoute'])
   });
 
   $scope.newGame = function() {
-    var char = $scope.randomCharacter();
+    var item = $scope.randomCharacter();
     $scope.locked = false;
     $scope.input = '';
     $scope.setTitle();
     $scope.state = 'play';
     $scope.character = {
-      letter: char[0],
-      code: char[1]
+      letter: item.char,
+      code: item.code
     };
   };
 
   $scope.randomCharacter = function() {
-    var key = Math.floor(Math.random() * $map.length);
+    var items = $map.enabledItems();
+    var key = Math.floor(Math.random() * items.length);
     console.log('char seed', key);
-    return $map[key];
+    return items[key];
   };
 
   $scope.win = function() {
