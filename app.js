@@ -12,5 +12,4 @@ angular.module('myApp', [
 config(['$routeProvider', 'localStorageServiceProvider', function($routeProvider, $storage) {
   $storage.setPrefix('morseMap');
   $routeProvider.otherwise({redirectTo: '/play'});
-  console.log(arguments);
 }]);

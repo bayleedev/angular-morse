@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('myApp.preferences')
+angular.module('myApp.preferences').
 
-.factory('morseMap', ['localStorageService', function($storage) {
+factory('morseMap', ['localStorageService', function($storage) {
   var data = $storage.get('morse') || [
     {char: 'A', enabled: true, code: '.-'},
     {char: 'B', enabled: true, code: '-...'},
