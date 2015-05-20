@@ -85,3 +85,6 @@ div button.btn {
 [keypress-events] {
   margin-top: 30px;
 }
+ul.difficulty, ul.characters {
+  padding: 0;
+}
