@@ -6,7 +6,11 @@ angular.module('myApp', [
   'myApp.play',
   'myApp.preferences',
   'mgcrea.ngStrap.navbar',
+  'LocalStorageModule',
 ]).
-config(['$routeProvider', function($routeProvider) {
+
+config(['$routeProvider', 'localStorageServiceProvider', function($routeProvider, $storage) {
+  $storage.setPrefix('morseMap');
   $routeProvider.otherwise({redirectTo: '/play'});
+  console.log(arguments);
 }]);

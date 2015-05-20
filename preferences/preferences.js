@@ -15,6 +15,10 @@ angular.module('myApp.preferences', ['ngRoute'])
   $scope.difficulty = $difficulty.value();
   $scope.$watch('difficulty', function(value) {
     $difficulty.value(value);
+    $difficulty.save();
   });
+  $scope.$watch('preferences', function() {
+    $map.save();
+  }, true);
 
 }]);

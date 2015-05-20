@@ -2,8 +2,8 @@
 
 angular.module('myApp.preferences')
 
-.factory('morseMap', function() {
-  var data = [
+.factory('morseMap', ['localStorageService', function($storage) {
+  var data = $storage.get('morse') || [
     {char: 'A', enabled: true, code: '.-'},
     {char: 'B', enabled: true, code: '-...'},
     {char: 'C', enabled: true, code: '-.-.'},
@@ -51,6 +51,9 @@ angular.module('myApp.preferences')
         if (el.enabled) items.push(el);
       });
       return items;
+    },
+    save: function() {
+      $storage.set('morse', data);
     }
   };
-});
+}]);
