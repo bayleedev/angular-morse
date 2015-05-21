@@ -1,0 +1,7 @@
+#!/bin/sh
+
+npm install
+git add -f app/bower_components/
+git commit -m "Include bower components."
+git push origin `git subtree split --prefix app master`:gh-pages --force
+git reset --hard head~1
