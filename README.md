@@ -1,5 +1,7 @@
 # Morse Code Flash Cards
 
+[![Build Status](https://travis-ci.org/blainesch/angular-morse.svg?branch=master)](https://travis-ci.org/blainesch/angular-morse)
+
 This will help you memorize morse code. First you'll always see the answer, but
 as you get better you'll see the answer less likely.
 

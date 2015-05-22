@@ -4,8 +4,9 @@ exports.config = {
   specs: [
     '*.js'
   ],
-  
-  seleniumAddress: 'http://localhost:4444/wd/hub',
+
+  // Some computers block the default port
+  // seleniumAddress: 'http://localhost:4444/wd/hub',
 
   capabilities: {
     'browserName': 'chrome'
