@@ -104,6 +104,7 @@ controller('PlayCtrl', [
 
       // Listen for button pushes
       $scope.trigger = function(char) {
+        console.log('button trigger');
         var e = {};
         if (char === '.') {
           e.which = this.keys.dot;
@@ -114,7 +115,7 @@ controller('PlayCtrl', [
       };
 
       $scope.safeApply = function(fn) {
-        var phase = this.$root.$$phase;
+        var phase = this.$root && this.$root.$$phase || '';
         if(phase == '$apply' || phase == '$digest') {
           if(fn && (typeof(fn) === 'function')) {
             fn();
